@@ -4,13 +4,20 @@
 
 def gen_code(n,osx,o,ll):
     l = ''
+    takenfiller = True
     if osx:
         l = '_'
         o.write('.globl _foo%d\n' % n)
     else:
         o.write('.global foo%d\n' % n)
+
+    if takenfiller:
+        bt = 'z'
+    else:
+        bt = 'nz'
         
     o.write('%sfoo%d:\n' % (l, n))
+    o.write('eor	w3, w3, w3\n')    
     o.write('.L%d:\n' % ll)
     ss = ll
     ll = ll + 1
@@ -22,7 +29,7 @@ def gen_code(n,osx,o,ll):
     o.write('.L%d:\n' % ll)
     ll = ll + 1
     for i in range(0, n):
-        o.write('b .LL%d\n' % ll)
+        o.write('tb%s w3, 0, .LL%d\n' % (bt, ll))
         o.write('.LL%d:\n' % ll)
         ll = ll + 1
     o.write('tbz	x2, 0, .L%d\n' % ll)
@@ -38,7 +45,7 @@ def gen_code(n,osx,o,ll):
 if __name__ == '__main__':
     o = open('functions.s', 'w')
     ll = 0
-    n = 129
+    n = 1024
     for i in range(1, n):
         ll = gen_code(i, True, o, ll)
     o.close()
