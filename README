@@ -1,0 +1,9 @@
+implementation of the global history reconstruction algorithm from https://cseweb.ucsd.edu/~tullsen/halfandhalf.pdf
+
+Generate assembly by running python script (will generate header.h and functions.s)
+
+Make to build binary
+
+Run with sudo (for access to performance counters)
+
+Will spit out history length and mispredict rate in the style of figure 2a of the half&half paper
