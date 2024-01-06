@@ -45,9 +45,9 @@ def gen_code(n,osx,o,ll):
 if __name__ == '__main__':
     o = open('functions.s', 'w')
     ll = 0
-    n = 1024
+    n = 128
     for i in range(1, n):
-        ll = gen_code(i, True, o, ll)
+        ll = gen_code(i, False, o, ll)
     o.close()
     o = open('header.h', 'w')
     o.write('#include <stdint.h>\n')

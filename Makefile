@@ -1,6 +1,6 @@
-OBJ = main.o m1cycles.o functions.o
-CXX = clang++
-CC = clang
+OBJ = main.o functions.o
+CXX = g++
+CC = gcc
 EXE = hist-len
 OPT = -O2
 CXXFLAGS = -std=c++11 -g $(OPT)
